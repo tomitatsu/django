@@ -12,7 +12,7 @@ def index(request):
 	else:
 		f =  hornetUrlForm()
 		c = {'hornetForm': f}
-	return render_to_response('logAnalyze/index.html', c)
+	return render(request, 'logAnalyze/index.html', c)
 		#return redirect('logAnalyze:result', {'hornetform': f})
 		#return render(request, 'logAnalyze/index.html', {'hornetform': f})
 

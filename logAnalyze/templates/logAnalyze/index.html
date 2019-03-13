@@ -1,7 +1,11 @@
 <h1>Hornet URL</h1>
 
-<form action="{% url 'results' 'hoge' %}" method="post">
-  <% csrf_token %>
-  {{ hornetForm }}
-  <input type="submit" value="Analyze" />
+<form action="" method="post">
+  {% csrf_token %}
+  {% if url %}
+    {{ url }}
+  {% else %}
+    {{ hornetForm.as_p }}
+    <input type="submit" value="Analyze" />
+  {% endif %}
 </form>
