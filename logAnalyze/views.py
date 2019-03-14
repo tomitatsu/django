@@ -1,5 +1,4 @@
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from logAnalyze.forms import hornetUrlForm
 
 def index(request):
@@ -9,12 +8,17 @@ def index(request):
 		c = {
 			'url':request.POST["hornetUrl"]
 		}
+		hornetUrl=request.POST["hornetUrl"]
+		return redirect('logAnalyze:analyze', url=hornetUrl)
 	else:
 		f =  hornetUrlForm()
 		c = {'hornetForm': f}
 	return render(request, 'logAnalyze/index.html', c)
-		#return redirect('logAnalyze:result', {'hornetform': f})
 		#return render(request, 'logAnalyze/index.html', {'hornetform': f})
+
+def analyze(request, url):
+	#return redirect('logAnalyze:results', {'url': url})
+	return render(request, 'logAnalyze/index.html', {'url': url})
 
 def results(request, url):
 #    response = "You're looking at the results of %s."
