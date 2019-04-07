@@ -1,31 +1,33 @@
+{% extends "base.html" %}
 {% load staticfiles %}
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" /> <!-- ← 追加 -->
   </head>
   <body>
-    <h1>Hornet URL</h1>
+    {% block content %}
     <form action="" method="post">
       {% csrf_token %}
-      {{ hornetForm.as_p }}
+      {{ hornetForm }}
       <input type="submit" value="Analyze" />
     </form>
-    <table border="1" class="table table-striped">
-      <thead>
-        <tr>
-          <th>url</th>
-          <th>status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for log in logs %}
+      <table border="1" class="table table-striped">
+        <thead>
           <tr>
-            <td>{{ log.url }}</td>
-            <td>{{ log.status }}</td>
+            <th>url</th>
+            <th>status</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {% for log in logs %}
+            <tr>
+              <td>{{ log.url }}</td>
+              <td>{{ log.status }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endblock content %}
   </body>
 
 
