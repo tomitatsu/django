@@ -1,5 +1,6 @@
 {% extends "logAnalyze/base.html" %}
 {% load staticfiles %}
+{% load bootstrap4 %}
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" /> <!-- ← 追加 -->
@@ -8,8 +9,8 @@
     {% block content %}
     <form action="" method="post">
       {% csrf_token %}
-      {{ hornetForm }}
-      <input type="submit" value="Analyze" />
+      {% bootstrap_form hornetForm layout='inline' %}
+      {% bootstrap_button "Submit" button_type="submit" button_class="btn btn-primary" %}
     </form>
       <table border="1" class="table table-striped">
         <thead>
